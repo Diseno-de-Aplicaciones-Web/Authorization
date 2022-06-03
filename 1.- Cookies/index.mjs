@@ -6,7 +6,15 @@ const app = express()
 app.use(cookieParser())
 
 app.get('/updatecookies/', (req,res)=>{
-    res.cookie("sessionId", Date.now().toString()) // Establecemos una cookie
+    res.cookie(
+        "sessionId",
+        Date.now().toString(),
+        {
+            // secure: true
+            sameSite: true,
+            maxAge: 30000 // milliseconds
+        }
+    ) // Establecemos una cookie
     res.cookie("idioma", "castrapo") // y otra más.
     res.sendStatus(200)
 })
