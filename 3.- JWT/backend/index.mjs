@@ -53,4 +53,4 @@ app.get("/secretos/", authMiddleware, (req, res)=>{
     res.send(`Hola ${res.locals.username}. El secreto de la vida, el universo y de todo: 42`)
 })
 
-app.listen(3000)
+app.listen(3000, ()=>{console.log("Ready...");})
