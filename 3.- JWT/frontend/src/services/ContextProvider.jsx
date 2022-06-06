@@ -30,6 +30,7 @@ function Context ({children}) {
                 const response = await fetch(backendURL+loginEndpoint,{
                     headers: {
                         Authorization
+                        //Authorization: `Basic ${btoa(username+':'+password)}`,
                     }
                 })
                 if (response.status === 200) {
@@ -44,6 +45,9 @@ function Context ({children}) {
                 })
                 if (response.status === 200 ) {
                     this.setSecrets( await response.text() )
+                }
+                if (response.status === 401 ) {
+                    this.deleteToken()
                 }
             }
         }
